@@ -24,14 +24,14 @@ def compute_drawdown_duration_peaks(dd: pd.Series):
     df = df.reindex(dd.index)
     return df['duration'], df['peak_dd']
 
-
+#This function calculates the geometric mean of a series of returns.
 def geometric_mean(returns: pd.Series) -> float:
     returns = returns.fillna(0) + 1
     if np.any(returns <= 0):
         return 0
     return np.exp(np.log(returns).sum() / (len(returns) or np.nan)) - 1
 
-
+#This function computes various statistical metrics based on trading data and equity over time.
 def compute_stats(
         trades: Union[List['Trade'], pd.DataFrame],
         equity: np.ndarray,
